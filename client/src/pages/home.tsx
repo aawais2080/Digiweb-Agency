@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ContactForm } from "@/components/contact-form";
@@ -44,9 +45,11 @@ export default function Home() {
               >
                 Start a Project
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full text-lg px-8 h-14 border-2 hover:bg-white/50">
-                Our Services
-              </Button>
+              <Link href="/services">
+                <Button size="lg" variant="outline" className="rounded-full text-lg px-8 h-14 border-2 hover:bg-white/50">
+                  Our Services
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -88,9 +91,9 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">{service.desc}</p>
-                  <div className="mt-6 flex items-center text-primary font-medium text-sm group-hover:underline">
+                  <Link href="/services" className="mt-6 flex items-center text-primary font-medium text-sm group-hover:underline">
                     Learn more <ArrowRight size={16} className="ml-1" />
-                  </div>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -185,9 +188,11 @@ export default function Home() {
               <p className="text-muted-foreground mb-8 text-lg">
                 Digiweb is an online ecosystem, a group of specialists in the field of online visibility and findability. We bundle our forces and offer all expertise from a single point of contact.
               </p>
-              <Button variant="outline" className="rounded-full">
-                Meet the Team <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              <Link href="/team">
+                <Button variant="outline" className="rounded-full">
+                  Meet the Team <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -200,9 +205,11 @@ export default function Home() {
             "Good work starts with <span className="text-primary">clear agreements</span> without surprises."
           </h2>
           <div className="mt-12">
-            <Button size="lg" variant="secondary" className="rounded-full px-8 h-12 font-semibold">
-              More about our approach <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+            <Link href="/process">
+              <Button size="lg" variant="secondary" className="rounded-full px-8 h-12 font-semibold">
+                More about our approach <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,12 +1,16 @@
+import { Link } from "wouter";
+
 export function Footer() {
   return (
     <footer className="bg-white py-12 border-t border-border">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="col-span-1 md:col-span-1">
-            <h3 className="text-2xl font-bold font-display text-primary mb-4">
-              Digiweb<span className="text-foreground">.</span>
-            </h3>
+            <Link href="/">
+              <h3 className="text-2xl font-bold font-display text-primary mb-4 cursor-pointer">
+                Digiweb<span className="text-foreground">.</span>
+              </h3>
+            </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Transforming your digital ambitions into concrete success stories through design, code, and strategy.
             </p>
@@ -15,20 +19,20 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary">Web Development</a></li>
-              <li><a href="#" className="hover:text-primary">Graphic Design</a></li>
-              <li><a href="#" className="hover:text-primary">Video Editing</a></li>
-              <li><a href="#" className="hover:text-primary">SEO & SEM</a></li>
+              <li><Link href="/services" className="hover:text-primary">Web Development</Link></li>
+              <li><Link href="/services" className="hover:text-primary">Graphic Design</Link></li>
+              <li><Link href="/services" className="hover:text-primary">Video Editing</Link></li>
+              <li><Link href="/services" className="hover:text-primary">SEO & SEM</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary">About Us</a></li>
-              <li><a href="#" className="hover:text-primary">Our Process</a></li>
-              <li><a href="#" className="hover:text-primary">Careers</a></li>
-              <li><a href="#" className="hover:text-primary">Contact</a></li>
+              <li><Link href="/team" className="hover:text-primary">About Us</Link></li>
+              <li><Link href="/process" className="hover:text-primary">Our Process</Link></li>
+              <li><Link href="/team" className="hover:text-primary">Careers</Link></li>
+              <li><Link href="/contact" className="hover:text-primary">Contact</Link></li>
             </ul>
           </div>
 
