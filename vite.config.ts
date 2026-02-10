@@ -7,6 +7,9 @@ import { metaImagesPlugin } from "./vite-plugin-meta-images";
 
 export default defineConfig({
   base: "/",
+  define: {
+    'import.meta.env.VITE_WEB3FORMS_KEY': JSON.stringify(process.env.WEB3FORMS_ACCESS_KEY || ''),
+  },
   plugins: [
     react(),
     runtimeErrorOverlay(),

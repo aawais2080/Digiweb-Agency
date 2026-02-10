@@ -59,6 +59,13 @@ shared/           → Code shared between client and server
   schema.ts       → Drizzle database schema & Zod types
 ```
 
+### Contact Forms
+- **Service**: Web3Forms (client-side form submission API, no backend needed)
+- **How it works**: Forms send data directly to `https://api.web3forms.com/submit` with an access key. Emails are forwarded to hello@digiweb-agency.com
+- **Access key injection**: Web3Forms access key (`WEB3FORMS_ACCESS_KEY` secret) is injected at build time via Vite `define` config as `import.meta.env.VITE_WEB3FORMS_KEY`
+- **Forms**: 3 forms total — dialog form (contact-form.tsx), contact page form (contact.tsx), quick contact on project detail pages (project-detail.tsx)
+- **Deployment note**: For Hostinger static deployment, the `WEB3FORMS_ACCESS_KEY` must be added as a GitHub repository secret so the GitHub Actions build step can inject it
+
 ## External Dependencies
 
 - **PostgreSQL**: Primary database (requires `DATABASE_URL` environment variable)
@@ -69,4 +76,5 @@ shared/           → Code shared between client and server
 - **Sonner**: Toast notification library (used alongside shadcn toaster)
 - **Embla Carousel**: Carousel component support
 - **Recharts**: Chart component support (via shadcn chart component)
+- **Web3Forms**: Client-side form submission API (access key via `WEB3FORMS_ACCESS_KEY` secret)
 - **Replit plugins**: `@replit/vite-plugin-runtime-error-modal`, `@replit/vite-plugin-cartographer`, `@replit/vite-plugin-dev-banner` (dev-only Replit integration)

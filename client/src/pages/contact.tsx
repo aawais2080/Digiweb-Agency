@@ -27,17 +27,40 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const serviceLabels: Record<string, string> = {
+      "web-development": "Web Development",
+      "graphic-design": "Graphic Design",
+      "video-editing": "Video Editing",
+      "seo": "SEO Optimization",
+      "sem": "SEM Marketing",
+    };
+
     try {
-      const response = await fetch("/api/contact", {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
+      if (!accessKey) {
+        throw new Error("Form service is not configured. Please contact us directly at hello@digiweb-agency.com");
+      }
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New Contact Form Submission from ${formData.name}`,
+          from_name: "Digiweb Agency Website",
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || "Not provided",
+          service: serviceLabels[formData.service] || formData.service,
+          message: formData.message,
+          replyto: formData.email,
+        }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Something went wrong");
+      if (!data.success) {
+        throw new Error(data.message || "Something went wrong");
       }
 
       toast.success("Thanks for reaching out! We'll get back to you soon.");

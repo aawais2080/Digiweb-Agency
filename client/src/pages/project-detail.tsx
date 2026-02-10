@@ -22,16 +22,28 @@ function ProjectContactForm({ projectName }: { projectName: string }) {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/contact/quick", {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
+      if (!accessKey) {
+        throw new Error("Form service is not configured. Please contact us directly at hello@digiweb-agency.com");
+      }
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, projectName }),
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `Quick Contact Request - Similar to ${projectName}`,
+          from_name: "Digiweb Agency Website",
+          name,
+          phone,
+          message: `Interested in a project similar to: ${projectName}`,
+        }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Something went wrong");
+      if (!data.success) {
+        throw new Error(data.message || "Something went wrong");
       }
 
       toast.success("Thanks! We'll be in touch soon.");
